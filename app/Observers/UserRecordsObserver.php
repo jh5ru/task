@@ -17,7 +17,7 @@ class UserRecordsObserver
     public function created(UserRecords $userRecords)
     {
         try {
-            $data = json_encode($userRecords);
+            $data = json_encode($userRecords, JSON_UNESCAPED_UNICODE);
             Mail::raw($data, function ($message) {
                 $message->to(env('MAIL_FROM_ADDRESS'))
                         ->subject('Новая запись');
